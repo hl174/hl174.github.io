@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/4 | hl174</title>
+  <title>基于tcp的简单socket编程 | hl174</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技术小白，博客不断完善中">
-<meta name="keywords" content="C++ Java  Linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hl174">
-<meta property="og:url" content="http://yoursite.com/archives/2018/04/index.html">
+  <meta name="description" content="有段时间没有写网络这块的，最近学习下。">
+<meta name="keywords" content="Linux 网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于tcp的简单socket编程">
+<meta property="og:url" content="http://yoursite.com/2018/06/10/基于tcp的简单socket编程/index.html">
 <meta property="og:site_name" content="hl174">
-<meta property="og:description" content="技术小白，博客不断完善中">
+<meta property="og:description" content="有段时间没有写网络这块的，最近学习下。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/06/10/基于tcp的简单socket编程/simple_tcp_socket.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/10/基于tcp的简单socket编程/console1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/10/基于tcp的简单socket编程/console2.png">
+<meta property="og:updated_time" content="2018-06-10T06:23:23.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hl174">
-<meta name="twitter:description" content="技术小白，博客不断完善中">
+<meta name="twitter:title" content="基于tcp的简单socket编程">
+<meta name="twitter:description" content="有段时间没有写网络这块的，最近学习下。">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/10/基于tcp的简单socket编程/simple_tcp_socket.png">
   
     <link rel="alternative" href="/atom.xml" title="hl174" type="application/atom+xml">
   
@@ -136,100 +141,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-基于tcp的简单socket编程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/25/关于链表LinkedList/" class="archive-article-date">
-  	<time datetime="2018-04-25T14:26:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/25/关于链表LinkedList/">关于链表LinkedList</a>
+    <h1 class="article-title" itemprop="name">
+      基于tcp的简单socket编程
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/10/基于tcp的简单socket编程/" class="archive-article-date">
+  	<time datetime="2018-06-10T06:05:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有段时间没有写网络这块的，最近学习下。<br><a id="more"></a><br>这篇帖子上介绍的linux下的基于tcp的socket编程不错，<a href="https://www.cnblogs.com/MyLove-Summer/p/5215287.html。" target="_blank" rel="noopener">https://www.cnblogs.com/MyLove-Summer/p/5215287.html。</a><br>这里贴下一个主要的图，一个基于tcp的网络编程的图。<br><img src="/2018/06/10/基于tcp的简单socket编程/simple_tcp_socket.png" alt="基于tcp的网络编程"><br>这里来一个简单的例子，一个客户端ClientSock，一个服务端ServerSock，服务器这边监听的端口号是20000，让客户端连上服务器后发送数据，服务器收到后打印出来。</p>
+<p>##服务器代码##<br>如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERVER_PORT 20000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LENGTH_OF_LISTEN_QUEUE 10</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFFER_SIZE 255</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> servfd,clifd;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">servaddr</span>,<span class="title">cliaddr</span>;</span></span><br><span class="line"><span class="keyword">if</span>((servfd = socket(AF_INET,SOCK_STREAM, <span class="number">0</span>)) &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"创建服务端socket失败, servfd[%d]"</span>, servfd);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bzero(&amp;servaddr , <span class="keyword">sizeof</span>(servaddr));</span><br><span class="line"></span><br><span class="line">servaddr.sin_family = AF_INET;</span><br><span class="line">servaddr.sin_port = htons(SERVER_PORT);</span><br><span class="line">servaddr.sin_addr.s_addr =htons(INADDR_ANY);<span class="comment">//INADDR_ANY就是指定地址为0.0.0.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(bind(servfd, (struct sockaddr *)&amp; servaddr, <span class="keyword">sizeof</span>(servaddr))  &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"绑定到端口%d失败 \n"</span>, SERVER_PORT);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(listen(servfd, LENGTH_OF_LISTEN_QUEUE)&lt;<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"回调listen失败 \n"</span>);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//服务端一直不退出，除非进程呗杀死</span></span><br><span class="line"><span class="keyword">char</span> buf[BUFFER_SIZE];</span><br><span class="line"><span class="keyword">long</span> timestamp;</span><br><span class="line"><span class="keyword">socklen_t</span> length = <span class="keyword">sizeof</span>(cliaddr);</span><br><span class="line"><span class="comment">//accept是三次握手的服务端</span></span><br><span class="line">clifd = accept(servfd, ( struct sockaddr *) &amp;cliaddr, &amp;length);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(clifd &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"回调accept的时候发生错误"</span>);</span><br><span class="line"><span class="keyword">break</span>; <span class="comment">// 跳出循环</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"来自客户端的ip:%s,端口号:%d,clifd[%d] \n"</span>, inet_ntoa(cliaddr.sin_addr), ntohs(cliaddr.sin_port), clifd);</span><br><span class="line">timestamp = time(<span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">int</span> lengthrec = <span class="number">0</span>;</span><br><span class="line">lengthrec = recv(clifd, buf, BUFFER_SIZE, <span class="number">0</span>);<span class="comment">//接受的是clifd</span></span><br><span class="line"><span class="keyword">if</span>(lengthrec &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"接受客户端的消息失败, lengthrec[%d]\n"</span>,lengthrec);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"来自客户端的数据为[%s] \n"</span>,buf);</span><br><span class="line"></span><br><span class="line"><span class="comment">//server收到消息后再发一次消息</span></span><br><span class="line">bzero(buf,<span class="keyword">sizeof</span>(buf));</span><br><span class="line"><span class="built_in">strcpy</span>(buf,<span class="string">"server收到了client的消息，这是给你的ack回复"</span>);</span><br><span class="line">send(clifd,buf,BUFFER_SIZE,<span class="number">0</span>);  <span class="comment">//还是刚才的clifd</span></span><br><span class="line">close(clifd);<span class="comment">//关闭客户端的文件描述符</span></span><br><span class="line">&#125;</span><br><span class="line">close(servfd);</span><br><span class="line">getchar();</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>本地测试的时候，为了不让终端一闪而过，最后加了个getchar()函数，让其停住。</p>
+<p>##客户端的代码##<br>如下:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERVER_PORT 20000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CLIENT_PORT ((20001+rand())%65536)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFFER_SIZE 255</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">usage</span><span class="params">(<span class="keyword">char</span> *name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"usage:%s "</span>,name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span>  clifd,length =<span class="number">0</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">servaddr</span>,<span class="title">cliaddr</span>;</span></span><br><span class="line"><span class="keyword">socklen_t</span> socklen = <span class="keyword">sizeof</span>(servaddr);</span><br><span class="line"><span class="keyword">char</span> buf[BUFFER_SIZE];</span><br><span class="line"><span class="keyword">if</span>(argc &lt; <span class="number">2</span>)</span><br><span class="line">&#123;</span><br><span class="line">usage(argv[<span class="number">0</span>]);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>((clifd  =socket(AF_INET, SOCK_STREAM, <span class="number">0</span>)) &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"创建客户端的fd失败\n"</span>);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">srand(time(<span class="literal">NULL</span>));</span><br><span class="line"></span><br><span class="line">bzero(&amp;cliaddr, <span class="keyword">sizeof</span>(cliaddr));</span><br><span class="line">cliaddr.sin_family = AF_INET;</span><br><span class="line">cliaddr.sin_port = htons(CLIENT_PORT);</span><br><span class="line">cliaddr.sin_addr.s_addr = htons(INADDR_ANY);</span><br><span class="line"></span><br><span class="line">bzero(&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</span><br><span class="line">servaddr.sin_family = AF_INET;</span><br><span class="line">inet_aton(argv[<span class="number">1</span>], &amp;servaddr.sin_addr);</span><br><span class="line">servaddr.sin_port = htons(SERVER_PORT);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(bind(clifd , (struct sockaddr*) &amp;cliaddr, <span class="keyword">sizeof</span>(cliaddr)) &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"绑定到端口%d失败\n"</span>, CLIENT_PORT);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>( connect(clifd, (struct sockaddr*)&amp;servaddr, socklen) &lt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"不能够连接到%s!\n"</span>, argv[<span class="number">1</span>]);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">strcpy</span>(buf,<span class="string">"是服务器么，我是客户端"</span>);</span><br><span class="line">send(clifd, buf, BUFFER_SIZE, <span class="number">0</span>); <span class="comment">//clifd绑定的connect,发的话就是这个socket</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"客户端发送完了,clifd[%d]\n"</span>, clifd);</span><br><span class="line"></span><br><span class="line">bzero(buf,<span class="keyword">sizeof</span>(buf));</span><br><span class="line">recv(clifd,buf,BUFFER_SIZE,<span class="number">0</span>);  <span class="comment">//接受消息也是同一个clifd</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"client发完后又收到了server的消息，消息[%s]"</span>,buf);</span><br><span class="line">close(clifd);</span><br><span class="line">getchar();</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>linux下还没有安啥ide，就用两个控制台来看<br><img src="/2018/06/10/基于tcp的简单socket编程/console1.png" alt="console1"><br>可让服务器不关，client端多次运行<br><img src="/2018/06/10/基于tcp的简单socket编程/console2.png" alt="console2"><br>这里服务器收到了是每次客户端不同的端口号。这样简单实现了一次通信，至于复杂的多次通信包括select poll epoll等可以继续包装。</p>
+<p>##关于socket中的send recv函数##<br>在建立socket后收发数据的时候，用到了send() recv()函数，它们的第一个参数都是fd，这里开始看了一些网上各种抄的版本后，发现收不到数据，自己然后看了下源码和man手册<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Send N bytes of BUF to socket FD.  Returns the number sent or -1.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   This function is a cancellation point and therefore not marked with</span></span><br><span class="line"><span class="comment">   __THROW.  */</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> ssize_t <span class="title">send</span> <span class="params">(<span class="keyword">int</span> __fd, <span class="keyword">const</span> <span class="keyword">void</span> *__buf, <span class="keyword">size_t</span> __n, <span class="keyword">int</span> __flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Read N bytes into BUF from socket FD.</span></span><br><span class="line"><span class="comment">   Returns the number read or -1 for errors.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   This function is a cancellation point and therefore not marked with</span></span><br><span class="line"><span class="comment">   __THROW.  */</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> ssize_t <span class="title">recv</span> <span class="params">(<span class="keyword">int</span> __fd, <span class="keyword">void</span> *__buf, <span class="keyword">size_t</span> __n, <span class="keyword">int</span> __flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Send N bytes of BUF on socket FD to peer at address ADDR (which is</span></span><br><span class="line"><span class="comment">   ADDR_LEN bytes long).  Returns the number sent, or -1 for errors.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   This function is a cancellation point and therefore not marked with</span></span><br><span class="line"><span class="comment">   __THROW.  */</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> ssize_t <span class="title">sendto</span> <span class="params">(<span class="keyword">int</span> __fd, <span class="keyword">const</span> <span class="keyword">void</span> *__buf, <span class="keyword">size_t</span> __n,</span></span></span><br><span class="line"><span class="function"><span class="params">           <span class="keyword">int</span> __flags, __CONST_SOCKADDR_ARG __addr,</span></span></span><br><span class="line"><span class="function"><span class="params">           <span class="keyword">socklen_t</span> __addr_len)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Read N bytes into BUF through socket FD.</span></span><br><span class="line"><span class="comment">   If ADDR is not NULL, fill in *ADDR_LEN bytes of it with tha address of</span></span><br><span class="line"><span class="comment">   the sender, and store the actual size of the address in *ADDR_LEN.</span></span><br><span class="line"><span class="comment">   Returns the number of bytes read or -1 for errors.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   This function is a cancellation point and therefore not marked with</span></span><br><span class="line"><span class="comment">   __THROW.  */</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> ssize_t <span class="title">recvfrom</span> <span class="params">(<span class="keyword">int</span> __fd, <span class="keyword">void</span> *__restrict __buf, <span class="keyword">size_t</span> __n,</span></span></span><br><span class="line"><span class="function"><span class="params">       <span class="keyword">int</span> __flags, __SOCKADDR_ARG __addr,</span></span></span><br><span class="line"><span class="function"><span class="params">       <span class="keyword">socklen_t</span> *__restrict __addr_len)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>###send函数###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">send(sockfd, buf, len, flags);</span><br><span class="line"> is equivalent to</span><br><span class="line"> sendto(sockfd, buf, len, flags, NULL, 0);</span><br><span class="line">The argument sockfd is the file descriptor of the sending socket</span><br></pre></td></tr></table></figure></p>
+<p>send函数和sendto函数一样，sockfd是发送端的socket描述符。我们这里的例子只是client发数据server，所以是clifd.<br>源码中send是发送n个byte的buf到socket，这个socket就是发送端发送数据前建立的socket。</p>
+<p>###recv函数###<br>网上的抄的都说第一个参数是指定接受端的套接字描述符。<br>源码解析从socket FD中读n个byte的buf，注意，这里的FD是三次握手建立连接的socket，也就是accept函数返回的socket，我们这里定义的是clifd。<br>针对发送端接收端，其实简单区分不太正确，发送也可接受，主要是看当前的数据socket是哪一条。|</p>
+<p>理解清楚send和recv的socket是哪一个就知道fd了<br>|</p>
+<p>ps&gt;本地测试的时候有时候会发现端口号被占用，例如服务端的端口号20000被占用，<br><strong>查看端口号是否被占用</strong><br>netstat -anp|grep 20000<br>lsof - i:20000<br><strong>杀进程</strong><br>kill -9 pid号<br>ps:关于博客插入图片的参考<a href="https://blog.csdn.net/sugar_rainbow/article/details/57415705" target="_blank" rel="noopener">https://blog.csdn.net/sugar_rainbow/article/details/57415705</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>我不是狗狗<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux 网络编程</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/10/基于tcp的简单socket编程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/15/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-15T09:38:56.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/03/DFS与回溯/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DFS与回溯</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/15/hello-world/">新建一个hexo模版的文件</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
+ <!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
           </div>
         </div>
       </div>
@@ -250,8 +337,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
