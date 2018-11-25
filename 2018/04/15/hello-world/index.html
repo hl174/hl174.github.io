@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="hl174">
 <meta property="og:description" content="这里只是简单的记录下一些操作，包括一些前人踩过的坑。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-11T13:45:49.474Z">
+<meta property="og:updated_time" content="2018-11-25T09:14:34.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="新建一个hexo模版的文件">
 <meta name="twitter:description" content="这里只是简单的记录下一些操作，包括一些前人踩过的坑。">
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  390 字
+                  492 字
                 </span>
               
 
@@ -401,19 +401,22 @@
 <li><a href="#generate-static-files">Generate static files</a></li>
 <li><a href="#run-server">Run server</a></li>
 <li><a href="#deploy-to-remote-sites">Deploy to remote sites</a></li>
+<li><a href="#遇到的问题">遇到的问题</a></li>
 </ul>
 <!-- tocstop -->
 <p>hexo与github page结合可以很方便的搭建出个人的静态网页博客。</p>
-<h3><span id="新建一个提交">新建一个提交</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h1><span id="新建一个提交">新建一个提交</span></h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>在根目录而非我们自己的themes的根目录下执行上述命令，hexo会自动在根目录的_posts文件夹下面生成相关的md文件；<br>然后打开该文件就可写我们自己的博客，具体的语法规则详见: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3><span id="generate-static-files">Generate static files</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h1><span id="generate-static-files">Generate static files</span></h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>该命令生成静态页面至public目录<br>详见: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3><span id="run-server">Run server</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h1><span id="run-server">Run server</span></h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>hexo server 可简化为命令 hexo s，开启预览访问端口，默认是4000端口，<br>打开浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到内容，很多人会碰到浏览器一直在转圈但是就是加载不出来的问题，一般情况下是因为端口占用的缘故，因为4000这个端口太常见了，解决端口冲突问题请参考这篇文章：<br><a href="http://blog.liuxianan.com/windows-port-bind.html" target="_blank" rel="noopener">http://blog.liuxianan.com/windows-port-bind.html</a><br>更多信息详见: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3><span id="deploy-to-remote-sites">Deploy to remote sites</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h1><span id="deploy-to-remote-sites">Deploy to remote sites</span></h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>发布过程，发布中可能需要先装一个插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <p>详见: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 <p>最后注意中文的编码问题，保存的时候记得保存编码为”UTF-8”</p>
+<h1><span id="遇到的问题">遇到的问题</span></h1><p>1 一段时间没登录后，使用hexo遇到下面的问题(20181125)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/c/Users/cai/AppData/Roaming/npm/hexo: line 12: node: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure></p>
+<p>自己记得没有删除过hexo，网上搜了下<a href="http://ccc013.github.io/2016/01/20/hexo+github%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">参考</a>，发现好像自己的node.js在开机清理垃圾的时候被删除了，于是安装了一下node.js，hexo就可以正常使用了。</p>
 <p>具体的手把手教程可参考：<a href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html</a><br>            <a href="https://segmentfault.com/a/1190000004359502" target="_blank" rel="noopener">https://segmentfault.com/a/1190000004359502</a><br>            <a href="https://blog.csdn.net/u012195214/article/details/79204088" target="_blank" rel="noopener">https://blog.csdn.net/u012195214/article/details/79204088</a></p>
 
       
@@ -527,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -549,7 +552,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -600,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">新建一个提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">Deploy to remote sites</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">新建一个提交</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Deploy to remote sites</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">遇到的问题</span></a></li></ol></div>
             
 
           </div>
@@ -634,7 +637,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">16.3k</span>
   
 </div>
 
