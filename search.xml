@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[百度开源rpc框架sofa-pbrpc与b-rpc]]></title>
-    <url>%2F2018%2F11%2F25%2F%E7%99%BE%E5%BA%A6%E5%BC%80%E6%BA%90rpc%E6%A1%86%E6%9E%B6sofa-pdbrpc%E4%B8%8Eb-rpc%2F</url>
+    <url>%2F2018%2F11%2F25%2F%E7%99%BE%E5%BA%A6%E5%BC%80%E6%BA%90rpc%E6%A1%86%E6%9E%B6sofa-pbrpc%E4%B8%8Eb-rpc%2F</url>
     <content type="text"><![CDATA[进程间常见的通信方式有消息队列、RPC、管道通信等，而RPC是目前许多公司中应用较为广泛的一种。]]></content>
       <categories>
         <category>Linux 网络编程</category>
