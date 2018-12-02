@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/gougou.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/gougou.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/gougou.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/gougou.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="声明或定义一个类/对象的时候，会因为类本身的成员结构而会引起不同的构造函数的调用，之前的学习中或多或少有些总结。">
+<meta name="keywords" content="C++ Java  Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++合成默认构造函数与new关键字带不带括号的分析">
+<meta property="og:url" content="http://yoursite.com/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/index.html">
+<meta property="og:site_name" content="hl174">
+<meta property="og:description" content="声明或定义一个类/对象的时候，会因为类本身的成员结构而会引起不同的构造函数的调用，之前的学习中或多或少有些总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-02T12:02:08.997Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++合成默认构造函数与new关键字带不带括号的分析">
+<meta name="twitter:description" content="声明或定义一个类/对象的时候，会因为类本身的成员结构而会引起不同的构造函数的调用，之前的学习中或多或少有些总结。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/"/>
+
+
+
+
+
+  <title>c++合成默认构造函数与new关键字带不带括号的分析 | hl174</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hl174</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl174">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl174">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">c++合成默认构造函数与new关键字带不带括号的分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T13:41:17+08:00">
+                2018-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度探索c-对象模型/" itemprop="url" rel="index">
+                    <span itemprop="name">深度探索c++对象模型</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/" class="leancloud_visitors" data-flag-title="c++合成默认构造函数与new关键字带不带括号的分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,589 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>声明或定义一个类/对象的时候，会因为类本身的成员结构而会引起不同的构造函数的调用，之前的学习中或多或少有些总结。<br><a id="more"></a></p>
+<!-- toc -->
+<ul>
+<li><a href="#全篇总结">全篇总结：</a></li>
+<li><a href="#1声明一个类的时候不一定是调用了默认构造函数">1，声明一个类的时候，不一定是调用了默认构造函数</a></li>
+<li><a href="#2深度探索c对象模型关于默认构造函数的解释">2,《深度探索c++对象模型》关于默认构造函数的解释</a><ul>
+<li><a href="#21-包含了一个类的对象这个对象有一个构造函数包括编译器合成的默认构造函数">2.1 包含了一个类的对象，这个对象有一个构造函数(包括编译器合成的默认构造函数)</a></li>
+<li><a href="#22-继承自一些基类其中某些基类有一个构造函数包括编译器合成的默认构造函数">2.2 继承自一些基类，其中某些基类有一个构造函数(包括编译器合成的默认构造函数)</a></li>
+<li><a href="#23-有一个虚函数或者继承到了虚函数">2.3 有一个虚函数，或者继承到了虚函数</a></li>
+<li><a href="#24-带有虚基类的类">2.4 带有虚基类的类</a></li>
+</ul>
+</li>
+<li><a href="#3-new创建一个对象时候带不带小括号的区别">3. new创建一个对象时候带不带小括号的区别</a><ul>
+<li><a href="#31内置类型的new">3.1内置类型的new</a></li>
+<li><a href="#32-自定义类型的new">3.2 自定义类型的new</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p>《c++primer（第五版）》《深度探索c++对象模型》《More Effective C++》三本书中都有总结，自己也简单的理解了下</p>
+<h1><span id="全篇总结">全篇总结：</span></h1><p>一，声明一个类对象时，不一定是调用了默认的构造函数；只有在没有任何构造函数且AA xx{}声明的时候，编译器才会对内置类型进行“零值化”；其他情况按照四种情况进行分析<br>二，编译器有四种情况会合成默认的构造函数<br>1.包含了一个类的对象，这个对象有一个构造函数(包括编译器合成的默认构造函数)<br>2.继承自一些基类，其中某些基类有一个构造函数(包括编译器合成的默认构造函数)<br>3.有一个虚函数，或者继承到了虚函数<br>4.有虚基类<br>两种错误的观点：<br>a&gt; 任何类如果没有定义构造函数，则编译器会帮我们合成一个默认构造函数。<br>b&gt; 合成默认构造函数会对类中的每一个数据成员进行初始化。<br>三，new对象的时候带不带括号<br><strong>对于自定义类类型：</strong><br>        如果该类没有定义构造函数（由编译器合成默认构造函数）也没有虚函数，那么class c = new class;将不调用合成的默认构造函数，而class c = new class();则会调用默认构造函数。<br>        如果该类没有定义构造函数（由编译器合成默认构造函数）但有虚函数，那么class c = new class;将不调用合成的默认构造函数；class c = new class()会调用默认构造函数。<br>       如果该类定义了默认构造函数，那么class c = new class;和class c = new class();一样，都会调用默认构造函数。<br><strong>对于内置类型：</strong><br>int <em>a = new int;不会将申请到的int空间初始化，而int </em>a = new int();则会将申请到的int空间初始化为0。</p>
+<h1><span id="1声明一个类的时候不一定是调用了默认构造函数">1，声明一个类的时候，不一定是调用了默认构造函数</span></h1><p>如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HasExplicitCon</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	HasExplicitCon()&#123;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"显式的定义一个默认构造函数"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	HasExplicitCon(<span class="keyword">int</span> a)&#123;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"显式的定义一个有参数默认构造函数"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span> </span>&#123;</span><br><span class="line">	HasExplicitCon hasObject1;</span><br><span class="line">	<span class="function">HasExplicitCon <span class="title">hasObject2</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">	<span class="function">HasExplicitCon <span class="title">hasObject3</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;hasObject1.a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;hasObject2.a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//cout&lt;&lt;hasObject3.a&lt;&lt;endl;  编译不通过</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">显式的定义一个默认构造函数</span><br><span class="line">显式的定义一个有参数默认构造函数</span><br><span class="line"><span class="number">4213675</span></span><br><span class="line"><span class="number">7602016</span></span><br></pre></td></tr></table></figure></p>
+<p>是的，没看错，结果只输出了两行，因为hasObject3后面跟的是小括号，会引起c++歧义，误以为是定义的一个函数，这点在之前的文章中说过了<a href="http://blog.csdn.net/hll174/article/details/78309212" target="_blank" rel="noopener">http://blog.csdn.net/hll174/article/details/78309212</a>。用中括号的话则不会，中括号实际是initializer_list,<a href="http://zh.cppreference.com/w/cpp/language/list_initialization" target="_blank" rel="noopener">http://zh.cppreference.com/w/cpp/language/list_initialization</a><br>std::initializer_list 对象在这些时候自动构造：</p>
+<blockquote>
+<p>花括号初始化器列表用于<strong>列表初始化</strong>，包括函数调用列表初始化和赋值表达式<br>花括号初始化器列表被绑定到 auto ，包括在带范围 for 循环中</p>
+</blockquote>
+<p>这里默认构造函数没有对变量a进行初始化，且其在类中没有初始值，new出的对象在堆中，编译器进行初始化的时候是对其进行随机初始化的。<br>所以明显看到定义(也就是我们所说的声明时)，会调用无参的构造函数(默认构造函数)，如果自己定义了则使用自己的，自己没有定义，则因为不满足四种情况，编译器也不会生成<strong>合成的默认构造函数</strong>，因此值是随机的。<br>这里HasExplicitCon自定义了默认构造函数，但是没有对a进行初始化，因此，a的值还是编译器随机化的，这种随机化的与构造函数无关。a的值是程序的责任，而非编译器的责任，默认构造函数只会执行编译器的责任，这点下面会将具体介绍。<br>而如果隐去所有的默认构造函数，则a的值仍然是随机值，因为这时候编译器也不会生成合成的默认构造函数，其不满足下面要介绍的编译器合成默认构造函数的四种情况。<br>这里又发现一种情况<br><strong>情况1：</strong><br><strong>A a;声明，且有显示的默认构造函数和带参数构造函数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class HasExplicitCon&#123;</span><br><span class="line">public:</span><br><span class="line">	HasExplicitCon()&#123;</span><br><span class="line">cout&lt;&lt;&quot;显式的定义一个默认构造函数&quot;&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	HasExplicitCon(int a)&#123;</span><br><span class="line">cout&lt;&lt;&quot;显式的定义一个有参数默认构造函数&quot;&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">    char *str;</span><br><span class="line">	int a;</span><br><span class="line">&#125;;</span><br><span class="line">int main(int argc, char **argv) &#123;</span><br><span class="line">	HasExplicitCon hasObject1;</span><br><span class="line"></span><br><span class="line">	if(hasObject1.str)&#123;</span><br><span class="line">   cout&lt;&lt;&quot;str是非空值&quot;&lt;&lt;endl;</span><br><span class="line">   cout&lt;&lt;*hasObject1.str&lt;&lt;endl;</span><br><span class="line">   cout&lt;&lt;hasObject1.a&lt;&lt;endl;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">   cout&lt;&lt;&quot;str是空值&quot;&lt;&lt;endl;</span><br><span class="line">   cout&lt;&lt;*hasObject1.str&lt;&lt;endl;</span><br><span class="line">   cout&lt;&lt;hasObject1.a&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">显式的定义一个默认构造函数</span><br><span class="line">str是非空值</span><br><span class="line">?</span><br><span class="line">4213819</span><br></pre></td></tr></table></figure></p>
+<p>调用了显示的默认构造函数，但是没有实例化a和str的值，因为这是程序的责任<br><strong>情况2：</strong><br><strong>A a;声明，无显示的默认构造函数和带参数构造函数</strong><br>也就是把上面情况的构造函数全部去掉，这里只贴结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str是非空值</span><br><span class="line">?</span><br><span class="line">4213803</span><br></pre></td></tr></table></figure></p>
+<p>结果相同，但原因不同。不满足四种情况，因此实质是编译器没有为其合成默认的构造函数，因为也就是没有构造函数调用，编译器处理的随机值。<br><strong>情况3：</strong><br><strong>A a{};声明，有显示的默认构造函数和带参数构造函数</strong><br>在情况1的基础上，只将声明改为    HasExplicitCon hasObject1{};，结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">显式的定义一个默认构造函数</span><br><span class="line">str是非空值</span><br><span class="line">?</span><br><span class="line">4213819</span><br></pre></td></tr></table></figure></p>
+<p>调用默认构造函数，但是认为str和a是程序的责任，情况与1相同。<br><strong>情况4：</strong><br><strong>A a{};声明，无显示的默认构造函数和带参数构造函数</strong><br>在情况3的基础上，去掉显示的构造函数，这个时候只输出了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str是空值</span><br></pre></td></tr></table></figure></p>
+<p>然后程序死亡，这里断点看到hasObject1.a的值为0。<br>情况2的时候是没有合成构造函数的，也没有对内置类型进行初始值。而这个时候内置类型的值都被“零化”，因为中括号{}的存在，而中括号本质是initializer_list，显示的构造函数中，编译器对于{}还是和普通的()一样，认为不是编译器的责任，例如情况3；而当没有构造函数的时候，编译器会合成了默认的构造函数且对内置类型的对象进行了初始化，这与initializer_list有很大关系，因此对于初始化的时候initializer_list还需要进一步研究。</p>
+<h1><span id="2深度探索c对象模型关于默认构造函数的解释">2,《深度探索c++对象模型》关于默认构造函数的解释</span></h1><p>文章：<a href="http://blog.csdn.net/ywending/article/details/51096547" target="_blank" rel="noopener">http://blog.csdn.net/ywending/article/details/51096547</a><br>          <a href="https://www.cnblogs.com/QG-whz/p/4676481.html" target="_blank" rel="noopener">https://www.cnblogs.com/QG-whz/p/4676481.html</a><br>          <a href="http://blog.csdn.net/cn_wk/article/details/61921566" target="_blank" rel="noopener">http://blog.csdn.net/cn_wk/article/details/61921566</a><br>          <a href="http://blog.csdn.net/spaceyqy/article/details/22730939" target="_blank" rel="noopener">http://blog.csdn.net/spaceyqy/article/details/22730939</a><br> 这四篇文章中都有详细的讨论，在此之前，先看看编译器合成的默认构造函数条件。<br>首先，《深度探索c++对象模型》这本书告诉我们有两个误解：<br>a)   任何类如果没有定义构造函数，则编译器会帮我们合成一个默认构造函数。<br>b)   合成默认构造函数会对类中的每一个数据成员进行初始化。<br>以及编译器为我们生成默认构造函数的四种情况：<br> 1.包含了一个类的对象，这个对象有一个构造函数(包括编译器合成的默认构造函数)<br> 2.继承自一些基类，其中某些基类有一个构造函数(包括编译器合成的默认构造函数)<br> 3.有一个虚函数，或者继承到了虚函数<br> 4.有虚基类</p>
+<h2><span id="21-包含了一个类的对象这个对象有一个构造函数包括编译器合成的默认构造函数">2.1 包含了一个类的对象，这个对象有一个构造函数(包括编译器合成的默认构造函数)</span></h2><p> 看下面这段代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Foo()&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"Foo显示定义的默认构造函数"</span>&lt;&lt;<span class="built_in">endl</span>;&#125;;</span><br><span class="line">	Foo(<span class="keyword">int</span>)&#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Foo foo;</span><br><span class="line">	<span class="keyword">char</span> *str;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Bar bar;</span><br><span class="line">	<span class="keyword">if</span>(bar.str)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"编译器对str进行了默认优化"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;*bar.str&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span> </span>&#123;</span><br><span class="line"> f();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我在gcc6.2的平台下结果为;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Foo显示定义的默认构造函数</span><br><span class="line">编译器对str进行了默认优化</span><br><span class="line">?</span><br></pre></td></tr></table></figure></p>
+<p>Bar类没有任何构造函数，含有类成员对象foo,且foo类有默认构造函数(显示自定义的)，因此编译器会为Bar类生成合成的默认构造函数，对变量进行初始化，注意这里编译器生成的默认构造函数首先是扩展构造函数，先调用了基类的默认构造函数对foo进行了初始化，这就是其<strong>构造函数扩展规则</strong>。<br>同时，编译器生成的默认构造函数初始化只会完成<strong>编译器责任的初始化</strong>，而不会完成<strong>程序责任的初始化</strong>，这里的foo对象就是编译器的责任，而str指针则是程序的责任，因此str在这里是一个栈区对象，编译器对其是进行随机值初始化(不同编译平台的处理可能不同)，因此我们需要构造Bar自己的构造函数完成程序的初始化，即对str进行初始化,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bar()&#123;str=0;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因此，上面文章作者帮我们总结了<strong>合成默认构造函数总是不会初始化类的内置类型及复合类型的数据成员</strong>，因为这是程序的责任，我们得分清楚编译器的责任与程序的责任。</p>
+<p>另外，这篇文章<a href="https://www.cnblogs.com/QG-whz/p/4676481.html" target="_blank" rel="noopener">https://www.cnblogs.com/QG-whz/p/4676481.html</a>“这是不可能的，构造函数是用来负责类对象的初始化的，一个类对象无论如何一定会被初始化，不论是默认初始化，还是值初始化。也就是说，当实例化类对象时，一定会调用构造函数。那也就不存在“需要/不需要”这回事，必然会合成。”<br>这是我们之前普遍的想法，我们看到认为的“类实例化”，其实并没有真正的实例化出来，可能类没有构造函数，编译器也无法合成默认的构造函数，“类实例化”仅仅只是编译器随机化的一个垃圾值，我们的实例化是我们知道或者变量对象按照我们需要的去进行初始值，而不是随机值。没有一定会调构造函数，值被初始化有可能只是编译器的处理而非各种构造函数的处理。</p>
+<h2><span id="22-继承自一些基类其中某些基类有一个构造函数包括编译器合成的默认构造函数">2.2 继承自一些基类，其中某些基类有一个构造函数(包括编译器合成的默认构造函数)</span></h2><p>这与上面类似，只是这里有构造函数的<strong>扩展规则</strong><br>基类默认构造函数(按照基类被声明的顺序先声明优先，多层基类按照上层优先)—&gt;类对象的默认构造函数(按照类对象在类中声明的先后顺序)—&gt;类自身的默认构造函数</p>
+<h2><span id="23-有一个虚函数或者继承到了虚函数">2.3 有一个虚函数，或者继承到了虚函数</span></h2><p>同时还有可能：<br>(1)类声明或继承一个虚函数<br>(2)类派生自一个继承链，其中有一个或更多的虚基类<br>总之这种情况的就是类有虚函数了，因为在编译期会有虚函数表被生成出来，同时还有指向虚函数表的指针vptr被生成出来，vptr需要被初始化才能完成虚机制。这些都是在构造函数中完成的，因此没有构造函数的类会由编译器合成默认的构造函数。因此扩展构造函数的规则就是设置正确的虚函数表地址。</p>
+<h2><span id="24-带有虚基类的类">2.4 带有虚基类的类</span></h2><p>这种典型的虚基类的继承有“菱形继承”，为了让派生类中只有一个虚基类的对象，以前编译器的做法是<strong>在派生类的每个虚基类中安插一个指针</strong>，所有由引用或指针来存取一个虚基类的操作都可以通过相关指针完成。这个指针也是在类构造期间完成的，因此若类没有任何构造函数，编译器会合成默认的构造函数。同样，扩展构造函数的规则是设置正确的虚基类指针的值。<br>因此需要理解编译器合成默认构造函数的四种情况，同时还得区分编译器初始化的责任与程序初始化的责任。</p>
+<h1><span id="3-new创建一个对象时候带不带小括号的区别">3. new创建一个对象时候带不带小括号的区别</span></h1><p>如果不用new创建对象，最好是用{}，而不是()，如上所述。当用()的时候，其实有一些误解。同时上面也介绍了编译器生成默认构造函数的四种情况，这里继续看看new一个对象的区别。<br>我们知道如果直接XX xx;则对象的内存是在栈区；<br>而XX xx =new XX;则是在堆区（这里先忽略带不带括号的事）<br>如果没有默认实例化，那么栈区和堆区的值都是随机初始化的，这种随机性很多时候是对程序有害的。</p>
+<h2><span id="31内置类型的new">3.1内置类型的new</span></h2><p>关于<strong>内置类型</strong>的new情况，这点没有争议：<br>带了()的时候，在分配内存的时候初始化零值(int的0或者string的0值)；没有带()的时候只分配了内存，其值是随机性的。看下面代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> *b=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;b[i]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">18353232</span></span><br><span class="line"><span class="number">18382632</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line">...</span><br><span class="line"><span class="number">-2147450880</span></span><br><span class="line"><span class="number">-2147450880</span></span><br></pre></td></tr></table></figure></p>
+<p>而加上()后的结果（建议还是用中括号好，前面小括号很多时候会有意想不到的Bug）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *b=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>]&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这样的结果为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line">...</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>全都是0，符合默认初始化的预期。</p>
+<h2><span id="32-自定义类型的new">3.2 自定义类型的new</span></h2><p>对于<strong>自定义类型的new</strong>，这里貌似不同的博客还是有点分歧，然后自己尝试了下。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span> </span>&#123;</span><br><span class="line">   A *a1=<span class="keyword">new</span> A;</span><br><span class="line">   A *a2=<span class="keyword">new</span> A();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;a1-&gt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;a2-&gt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  A a3;</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;a3.a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">17465128</span><br><span class="line">0</span><br><span class="line">4213632</span><br></pre></td></tr></table></figure></p>
+<p>只有a2的a值为0，a1和a3的值是随机的。这证实了一点：<br>(1)如果该类没有定义构造函数（由编译器合成默认构造函数）也没有虚函数，那么class c = new<br>class;将不调用合成的默认构造函数，而class c = new class();则会调用默认构造函数。<br>(2)a1不调用合成的默认构造函数，因此值是随机的；a3也是是因为无法生成合成的默认构造函数，而是随机值。<br>然后文章说</p>
+<blockquote>
+<p> 如果该类没有定义构造函数（由编译器合成默认构造函数）但有虚函数，那么class c = new class;和class c = new class();一样，都会调用默认构造函数。</p>
+</blockquote>
+<p>尝试了下只加虚函数，结果为<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">18481344</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">4213600</span></span><br></pre></td></tr></table></figure></p>
+<p>仍然是只有()的实例为0，而如果该类定义了默认构造函数，那么class c = new class;和class c = new class();一样，都会调用默认构造函数，这点毫无争议。</p>
+<p>因此总结下自定义类型的new时候：<br>        如果该类没有定义构造函数（由编译器合成默认构造函数）也没有虚函数，那么class c = new class;将不调用合成的默认构造函数，而class c = new class();则会调用默认构造函数。<br>        如果该类没有定义构造函数（由编译器合成默认构造函数）但有虚函数，那么class c = new class;将不调用合成的默认构造函数；class c = new class()会调用默认构造函数。<br>       如果该类定义了默认构造函数，那么class c = new class;和class c = new class();一样，都会调用默认构造函数。<br>          另外，这里的new调用默认构造函数的时候，是对内置类型对象进行“零值化”的，这点与第一章和第二章说的非编译器的责任则不初始化，因此值是随机的是存在区别的，注意区分。</p>
+<hr>
+<p>后续需要对initializer_list在构造函数初始化的情况进行分析，还有没有调用构造函数且自身没有定义构造函数内存的分配问题还需要学习。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/25/kafka为什么这么快/" rel="next" title="kafka为什么这么快">
+                <i class="fa fa-chevron-left"></i> kafka为什么这么快
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hl174</p>
+              <p class="site-description motion-element" itemprop="description">技术小白，博客不断完善中</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.younfor.com/" title="头条大佬" target="_blank">头条大佬</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.genge.cc/" title="游戏大佬" target="_blank">游戏大佬</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">全篇总结：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">1，声明一个类的时候，不一定是调用了默认构造函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">2,《深度探索c++对象模型》关于默认构造函数的解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">2.1 包含了一个类的对象，这个对象有一个构造函数(包括编译器合成的默认构造函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">2.2 继承自一些基类，其中某些基类有一个构造函数(包括编译器合成的默认构造函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">2.3 有一个虚函数，或者继承到了虚函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">2.4 带有虚基类的类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">3. new创建一个对象时候带不带小括号的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">3.1内置类型的new</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">3.2 自定义类型的new</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hl174</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">23.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'iOAeJgwoWsfldrbD0qYyss6x-gzGzoHsz',
+        appKey: 'W15ghhbMMEEUWyA7SRAu8sTX',
+        placeholder: 'Just go go',
+        avatar:'/images/gougou.jpg',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("iOAeJgwoWsfldrbD0qYyss6x-gzGzoHsz", "W15ghhbMMEEUWyA7SRAu8sTX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
