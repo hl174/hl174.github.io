@@ -79,17 +79,24 @@
 
 
 
-<meta name="description" content="技术小白，博客不断完善中">
+<meta name="description" content="TCP和UDP是我们经常使用的数据传输协议">
 <meta name="keywords" content="C++ Java  Linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hl174">
-<meta property="og:url" content="http://yoursite.com/categories/算法/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP与UDP报文头格式">
+<meta property="og:url" content="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/index.html">
 <meta property="og:site_name" content="hl174">
-<meta property="og:description" content="技术小白，博客不断完善中">
+<meta property="og:description" content="TCP和UDP是我们经常使用的数据传输协议">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/报文封装结构.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/TCP报文.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/TCP报文可选字段.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/UDP报文头.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/IP数据报.png">
+<meta property="og:updated_time" content="2018-12-02T12:34:59.563Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hl174">
-<meta name="twitter:description" content="技术小白，博客不断完善中">
+<meta name="twitter:title" content="TCP与UDP报文头格式">
+<meta name="twitter:description" content="TCP和UDP是我们经常使用的数据传输协议">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/报文封装结构.png">
 
 
 
@@ -119,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/"/>
 
 
 
 
 
-  <title>分类: 算法 | hl174</title>
+  <title>TCP与UDP报文头格式 | hl174</title>
   
 
 
@@ -144,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,167 +279,227 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>算法<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/TCP与UDP报文头格式/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl174">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl174">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/06/03/DFS与回溯/" itemprop="url">
-              
-                <span itemprop="name">DFS与回溯</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">TCP与UDP报文头格式</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-03T21:59:00+08:00"
-              content="2018-06-03" >
-          06-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T20:15:03+08:00">
+                2018-12-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux-网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux 网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/02/TCP与UDP报文头格式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/02/TCP与UDP报文头格式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/02/TCP与UDP报文头格式/" class="leancloud_visitors" data-flag-title="TCP与UDP报文头格式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,041 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/03/双指针/" itemprop="url">
-              
-                <span itemprop="name">双指针</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-03T21:57:22+08:00"
-              content="2018-06-03" >
-          06-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/03/贪心算法/" itemprop="url">
-              
-                <span itemprop="name">贪心算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-03T21:55:00+08:00"
-              content="2018-06-03" >
-          06-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/03/关于二分查找算法/" itemprop="url">
-              
-                <span itemprop="name">关于二分查找算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-03T21:51:42+08:00"
-              content="2018-06-03" >
-          06-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/25/关于链表LinkedList/" itemprop="url">
-              
-                <span itemprop="name">关于链表LinkedList</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-25T22:26:55+08:00"
-              content="2018-04-25" >
-          04-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>TCP和UDP是我们经常使用的数据传输协议<br><a id="more"></a></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-tcp报文头部">1 TCP报文头部</a><ul>
+<li><a href="#11-相关字段解释">1.1 相关字段解释</a><ul>
+<li><a href="#111-关于八位标记位">1.1.1 关于八位标记位</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-udp报文头">2 UDP报文头</a></li>
+<li><a href="#3-ip头部">3 IP头部</a><ul>
+<li><a href="#31-ip报头参数">3.1 IP报头参数</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p>首先我们需要知道报文的封装结构<br><img src="/2018/12/02/TCP与UDP报文头格式/报文封装结构.png" alt="报文封装结构"></p>
+<h1><span id="1-tcp报文头部">1 TCP报文头部</span></h1><p>TCP是一个<strong>面向连接的、可靠的、字节流</strong>传输协议。<br>TCP报文封装在IP报文中的时候，TCP头紧接着IP头。<br>不携带选项的TCP头长20bytes，携带选项的TCP头最长可达60bytes。<br><img src="/2018/12/02/TCP与UDP报文头格式/TCP报文.png" alt="TCP报文"><br>其中header length字段由4比特构成，最大为15，单位是32比特(32-bit word)，即头长的最大值为15*32 bits = 60bytes，因此上面说携带选项的<strong>TCP头长最长为60bytes，基本的不携带参数的只有20byte</strong>。<br>下面看到的options选项是省略了可能携带的10行10x32bit= 40byte<br><img src="/2018/12/02/TCP与UDP报文头格式/TCP报文可选字段.png" alt="TCP报文可选字段"></p>
+<h2><span id="11-相关字段解释">1.1 相关字段解释</span></h2><p><strong>源端口</strong>： 发送端应用程序的端口号(16bit)<br><strong>目的端口</strong>：接收端的端口号<br>源ip和目的ip不在tcp报文里面，在ip报文里面。<br><strong>序列号(SN)</strong>：32位的序列号标志TCP报文中第一个byte在对应方向的传输中对应的字节序号。也叫作SEQ<br><strong>确认号</strong>：ACK<br><strong>头长</strong>：4bit，包括TCP头大小，指示TCP头的长度，数据从何处开始，最大为15，单位是32bit。<br><strong>保留</strong>：4bit，默认是0.<br><strong>标记</strong>：8个标记位<br><strong>窗口大小</strong>：16位，指示从Ack Number开始还愿意接收多少byte的数据了，当前接收端的接收窗还有多少剩余空间。用于TCP的流量控制<br><strong>校验和</strong>：16位。发送端基于数据内容计算一个数值，接收端要与发送端数值结果完全一致，才能证明数据的有效性。<br><strong>紧急指针</strong>：指向后面是优先数据的字节。<br><strong>option</strong>：最大长度是10*32，必须是32的倍数</p>
+<h3><span id="111-关于八位标记位">1.1.1 关于八位标记位</span></h3><p>这段直接摘抄自：<a href="https://www.cnblogs.com/lshs/p/6038458.html" target="_blank" rel="noopener">https://www.cnblogs.com/lshs/p/6038458.html</a><br><strong>CWR</strong>(Congestion Window Reduce)：拥塞窗口减少标志被发送主机设置，用来表明它接收到了设置ECE标志的TCP包，发送端通过降低发送窗口的大小来降低发送速率<br><strong>ECE</strong>(ECN Echo)：ECN响应标志被用来在TCP3次握手时表明一个TCP端是具备ECN功能的，并且表明接收到的TCP包的IP头部的ECN被设置为11。更多信息请参考RFC793。<br><strong>URG</strong>(Urgent)：该标志位置位表示紧急(The urgent pointer) 标志有效。该标志位目前已经很少使用参考后面流量控制和窗口管理部分的介绍。<br><strong>ACK</strong>(Acknowledgment)：取值1代表Acknowledgment Number字段有效，这是一个确认的TCP包，取值0则不是确认包。后续文章介绍中当ACK标志位有效的时候我们称呼这个包为ACK包，使                                          用大写的ACK称呼。<br><strong>PSH</strong>(Push)：该标志置位时，一般是表示发送端缓存中已经没有待发送的数据，接收端不将该数据进行队列处理，而是尽可能快将数据转由应用处理。在处理 telnet 或 rlogin 等交互模式的连接                       时，该标志总是置位的。<br><strong>RST</strong>(Reset)：用于复位相应的TCP连接。通常在发生异常或者错误的时候会触发复位TCP连接。<br><strong>SYN</strong>(Synchronize)：同步序列编号(Synchronize Sequence Numbers)有效。该标志仅在三次握手建立TCP连接时有效。它提示TCP连接的服务端检查序列编号，该序列编号为TCP连接初始端(一般是客户端)的初始序列编号。在这里，可以把TCP序列编号看作是一个范围从0到4，294，967，295的32位计数器。通过TCP连接交换的数据中每一个字节都经过序列编号。在TCP报头中的序列编号栏包括了TCP分段中第一个字节的序列编号。类似的后续文章介绍中当这个SYN标志位有效的时候我们称呼这个包为SYN包。<br><strong>FIN</strong>(Finish)：带有该标志置位的数据包用来结束一个TCP会话，但对应端口仍处于开放状态，准备接收后续数据。当FIN标志有效的时候我们称呼这个包为FIN包</p>
+<p>另外我们一般称呼链路层的发出去的数据包为<strong>帧</strong>(frame)，称呼网络层发给链路层的数据包为<strong>包</strong>(packet)，称呼传输层发给网络层的数据包为<strong>段</strong>(segment)。但是正如我们描述所用，段、包、帧也经常统称为数据包或者数据报文</p>
+<h1><span id="2-udp报文头">2 UDP报文头</span></h1><p><img src="/2018/12/02/TCP与UDP报文头格式/UDP报文头.png" alt="UDP报文头"><br><strong>源端口</strong>：长度为16位，2个字节。<br><strong>目的端口</strong>：长度为16位，2个字节。<br><strong>总长度</strong>：长度为16位，2个字节，表示 UDP包头长度 和 数据长度之和。<br><strong>校验和</strong>：长度为16位，2个字节。<br>由上述的UDP报文格式可以知道，UDP包头的长度为8个字节。</p>
+<h1><span id="3-ip头部">3 IP头部</span></h1><p><img src="/2018/12/02/TCP与UDP报文头格式/IP数据报.png" alt="IP数据报"><br>IP数据包也叫IP报文分组，传输在ISO网络7层结构中的网络层，它由IP报文头和IP报文用户数据组成，IP报文头的长度一般在20到60个字节之间，而一个IP分组的最大长度则不能超过65535个字节。所以IP报其实与TCP的差不多，基本长度都是20byte，最长是60。</p>
+<h2><span id="31-ip报头参数">3.1 IP报头参数</span></h2><p><strong>版本</strong>：占4位（bit），指IP协议的版本号。目前的主要版本为IPV4，即第4版本号，也有一些教育网和科研机构在使用IPV6。在进行通信时，通信双方的IP协议版本号必须一致，否则无法直接通信。<br><strong>首部长度</strong>：占4位（bit），指IP报文头的长度。最大的长度（即4个bit都为1时）为15个长度单位，每个长度单位为4字节（TCP/IP标准，DoubleWord），所以IP协议报文头的最大长度为60个字节，最短为上图所示的20个字节。<br><strong>服务类型</strong>：占8位（bit），用来获得更好的服务。其中的前3位表示报文的优先级，后面的几位分别表示要求更低时延、更高的吞吐量、更高的可靠性、更低的路由代价等。对应位为1即有相应要求，为0则不要求。<br><strong>总长度</strong>：16位（bit），指报文的总长度。注意这里的单位为字节，而不是4字节，所以一个IP报文的的最大长度为65535个字节。<br><strong>标识</strong>（identification）：该字段标记当前分片为第几个分片，在数据报重组时很有用。<br><strong>标志</strong>（flag）：该字段用于标记该报文是否为分片（有一些可能不需要分片，或不希望分片），后面是否还有分片（是否是最后一个分片）。<br><strong>片偏移</strong>：指当前分片在原数据报（分片前的数据报）中相对于用户数据字段的偏移量，即在原数据报中的相对位置。<br><strong>生存时间</strong>：TTL（Time to Live）。该字段表明当前报文还能生存多久。每经过1ms或者一个网关，TTL的值自动减1，当生存时间为0时，报文将被认为目的主机不可到达而丢弃。 使用过Ping                    命令的用户应该有印象，在windows中输入ping命令，在返回的结果中即有TTL的数值。<br><strong>协议</strong>：该字段指出在上层（网络7层结构或TCP/IP的传输层）使用的协议，可能的协议有UDP、TCP、ICMP、IGMP、IGP等。<br><strong>首部校验和</strong>：用于检验IP报文头部在传播的过程中是否出错，主要校验报文头中是否有某一个或几个bit被污染或修改了。<br><strong>源IP地址</strong>：32位（bit），4个字节，每一个字节为0～255之间的整数，及我们日常见到的IP地址格式。<br><strong>目的IP地址</strong>：32位（bit），4个字节，每一个字节为0～255之间的整数，及我们日常见到的IP地址格式<br><a href="http://www.rosoo.net/a/201409/17083.html" target="_blank" rel="noopener">http://www.rosoo.net/a/201409/17083.html</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/" rel="next" title="c++合成默认构造函数与new关键字带不带括号的分析">
+                <i class="fa fa-chevron-left"></i> c++合成默认构造函数与new关键字带不带括号的分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -440,6 +507,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -460,8 +534,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -539,6 +622,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">1 TCP报文头部</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">1.1 相关字段解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">1.1.1 关于八位标记位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">2 UDP报文头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">3 IP头部</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">3.1 IP报头参数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -681,6 +780,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
