@@ -79,27 +79,18 @@
 
 
 
-<meta name="description" content="目前kafka是应用比较火的消息队列，都说kafka吞吐量大读写快，那到底是怎么快的。这里记录下不断学习的过程。">
+<meta name="description" content="今天看看static这个关键字用法">
 <meta name="keywords" content="C++ Java  Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kafka为什么这么快">
-<meta property="og:url" content="http://yoursite.com/2018/11/25/kafka为什么这么快/index.html">
+<meta property="og:title" content="c++中static的用法">
+<meta property="og:url" content="http://yoursite.com/2018/12/02/c-中static的用法/index.html">
 <meta property="og:site_name" content="hl174">
-<meta property="og:description" content="目前kafka是应用比较火的消息队列，都说kafka吞吐量大读写快，那到底是怎么快的。这里记录下不断学习的过程。">
+<meta property="og:description" content="今天看看static这个关键字用法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/kafka-apis.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/拓扑结构.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/顺序写入.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/转载消费者组.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/四次拷贝.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/mmap.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/sendfile.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/sendfile_1.png">
-<meta property="og:updated_time" content="2018-11-25T13:31:13.163Z">
+<meta property="og:updated_time" content="2018-12-02T13:36:43.023Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kafka为什么这么快">
-<meta name="twitter:description" content="目前kafka是应用比较火的消息队列，都说kafka吞吐量大读写快，那到底是怎么快的。这里记录下不断学习的过程。">
-<meta name="twitter:image" content="http://yoursite.com/2018/11/25/kafka为什么这么快/kafka-apis.png">
+<meta name="twitter:title" content="c++中static的用法">
+<meta name="twitter:description" content="今天看看static这个关键字用法">
 
 
 
@@ -129,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/25/kafka为什么这么快/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/02/c-中static的用法/"/>
 
 
 
 
 
-  <title>kafka为什么这么快 | hl174</title>
+  <title>c++中static的用法 | hl174</title>
   
 
 
@@ -296,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/kafka为什么这么快/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/c-中static的用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl174">
@@ -313,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kafka为什么这么快</h1>
+          <h1 class="post-title" itemprop="name headline">c++中static的用法</h1>
         
 
         <div class="post-meta">
@@ -325,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T20:47:25+08:00">
-                2018-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T21:31:04+08:00">
+                2018-12-02
               </time>
             
 
@@ -348,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/消息队列/" itemprop="url" rel="index">
-                    <span itemprop="name">消息队列</span>
+                  <a href="/categories/c-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">c++基础</span>
                   </a>
                 </span>
 
@@ -366,8 +357,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/25/kafka为什么这么快/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/25/kafka为什么这么快/" itemprop="commentCount"></span>
+                <a href="/2018/12/02/c-中static的用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/02/c-中static的用法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,7 +366,7 @@
 
           
           
-             <span id="/2018/11/25/kafka为什么这么快/" class="leancloud_visitors" data-flag-title="kafka为什么这么快">
+             <span id="/2018/12/02/c-中static的用法/" class="leancloud_visitors" data-flag-title="c++中static的用法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -400,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,226 字
+                  1,915 字
                 </span>
               
 
@@ -425,40 +416,50 @@
       
 
       
-        <p>目前kafka是应用比较火的消息队列，都说kafka吞吐量大读写快，那到底是怎么快的。这里记录下不断学习的过程。<br><a id="more"></a></p>
+        <p>今天看看static这个关键字用法<br><a id="more"></a></p>
 <!-- toc -->
 <ul>
-<li><a href="#1-kafka的架构">1 kafka的架构</a></li>
-<li><a href="#2-拓扑结构">2 拓扑结构</a></li>
-<li><a href="#3-kafka为什么快">3 kafka为什么快</a><ul>
-<li><a href="#31-kafka的生产者">3.1 kafka的生产者</a><ul>
-<li><a href="#311-顺序写入">3.1.1 顺序写入</a></li>
-<li><a href="#312-memory-mapped-files">3.1.2 Memory Mapped Files</a></li>
+<li><a href="#cpp中static用法">cpp中static用法</a><ul>
+<li><a href="#1-类的静态成员变量">1 类的静态成员变量</a></li>
+<li><a href="#2-类的静态成员函数">2 类的静态成员函数</a></li>
+<li><a href="#3-只在cpp文件内有效的static变量">3 只在cpp文件内有效的static变量</a><ul>
+<li><a href="#31-static的多层含义">3.1 static的多层含义</a></li>
 </ul>
 </li>
-<li><a href="#32-kafka消费者的零拷贝">3.2 kafka消费者的零拷贝</a><ul>
-<li><a href="#321-mmap减少拷贝次数">3.2.1 mmap减少拷贝次数</a></li>
-<li><a href="#322-使用sendfilekafka使用方式">3.2.2 使用sendfile(kafka使用方式)</a></li>
+<li><a href="#4-只在cpp文件内有效的static函数">4 只在cpp文件内有效的static函数</a></li>
+<li><a href="#5-利用静态变量-静态成员函数私有静态变量实现一个单例">5 利用静态变量、静态成员函数，私有静态变量实现一个单例</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#4-kafka总结">4 kafka总结</a></li>
 </ul>
 <!-- tocstop -->
-<h1><span id="1-kafka的架构">1 kafka的架构</span></h1><p><img src="/2018/11/25/kafka为什么这么快/kafka-apis.png" alt="kafka架构"><br>相关的术语：<br>Broker：每一个kafka实例（或者说每台kafka服务器节点）就是一个broker，一个broker可以有多个topic<br>Topic：消息根据topic进行归类，topic其本质是一个目录，即将同一主题消息归类到同一个目录<br>Partition：Partititon指物理上的分区，每个topic包含多个partititon<br>Producer：消息生产者，产生的消息将会被发送到某个topic<br>Consumer：消息消费者，消费的消息内容来自某个topic<br>Consumer Group：每个consumer属于consumer group</p>
-<h1><span id="2-拓扑结构">2 拓扑结构</span></h1><p><img src="/2018/11/25/kafka为什么这么快/拓扑结构.png" alt="拓扑结构"><br>Kafka 通过 Zookeeper 管理集群配置，选举 leader，以及在 Consumer Group 发生变化时进行 rebalance。<br>Producer 使用 push 模式将消息发布到 broker，Consumer 使用 pull 模式从 broker 订阅并消费消息。</p>
-<h1><span id="3-kafka为什么快">3 kafka为什么快</span></h1><p>kafka是用scala编写的同时支持离线数据和实时数据处理的分布式的、基于发布订阅的消息系统。</p>
-<h2><span id="31-kafka的生产者">3.1 kafka的生产者</span></h2><p>生产者（producer）是负责向Kafka提交数据的，Kafka会把收到的消息都写入到硬盘中，它绝对不会丢失数据。为了优化写入速度Kafak采用了两个技术，<strong>顺序写入和MMFile</strong>。</p>
-<h3><span id="311-顺序写入">3.1.1 顺序写入</span></h3><p>因为硬盘是机械结构，每次读写都会寻址→写入，其中寻址是一个“机械动作”，它是最耗时的。所以硬盘最“讨厌”随机I/O，最喜欢顺序I/O。为了提高读写硬盘的速度，Kafka就是使用顺序I/O。<br><img src="/2018/11/25/kafka为什么这么快/顺序写入.png" alt="顺序写入"><br>上图就展示了Kafka是如何写入数据的，每一个Partition其实都是一个文件，收到消息后Kafka会把数据插入到文件末尾。<br>但是这种顺序写入有个缺点：<strong>无法删除</strong>。所以Kafka是不会删除数据的，它会把所有的数据都保留下来，每个消费者（Consumer）对每个Topic都有一个offset用来表示读取到了第几条数据。<br><img src="/2018/11/25/kafka为什么这么快/转载消费者组.jpg" alt="消费者组"><br>上图中有两个消费者，Consumer1有两个offset分别对应Partition0、Partition1（假设每一个Topic一个Partition）；Consumer2有一个offset对应Partition2。这个offset是由客户端SDK负责保存的，Kafka的Broker完全无视这个东西的存在；一般情况下SDK会把它保存到zookeeper里面。(所以需要给Consumer提供zookeeper的地址)。<br>长时间下去硬盘也会满，针对硬盘的也有两种删除策略：基于时间和基于partition文件大小。</p>
-<h3><span id="312-memory-mapped-files">3.1.2 Memory Mapped Files</span></h3><p>硬盘的IO读写速度是不如内存的，因此即使顺序写磁盘，硬盘的访问速度还是略慢。kafka的数据并不是实时写入硬盘的，它是通过计算机系统的分页存储来利用内存提高IO效率的。<br>Memory Mapped Files(后面简称mmap)也被翻译成内存映射文件，在32位操作系统中一般可以表示4G的数据文件，它的工作原理是直接利用操作系统的Page来实现文件到物理内存的直接映射。完成映射之后你对物理内存的操作会被同步到硬盘上。<br>通过内存映射mmap技术，进程读写内存的时候不需关注内存的大小，因为这时候是读写的虚拟内存。<br>使用这种方式可以获取很大的I/O提升，省去了用户空间到内核空间复制的开销（调用文件的read会把数据先放到内核空间的内存中，然后再复制到用户空间的内存中）。<br>但是也有一个很明显的缺陷——不可靠，写到mmap中的数据并没有被真正的写到硬盘，操作系统会在程序主动调用flush的时候才把数据真正的写到硬盘。<br>Kafka提供了一个参数——producer.type来控制是不是主动flush，如果Kafka写入到mmap之后就立即flush然后再返回Producer叫同步(sync)；写入mmap之后立即返回Producer不调用flush叫异步(async)。<br>在linux中的有函数mmap来实现内存映射，在java中也有mappedbytebuffer类来实现内存映射。关于内存映射可以单独细述。</p>
-<h2><span id="32-kafka消费者的零拷贝">3.2 kafka消费者的零拷贝</span></h2><p>消费者读取文件数据，kafka写磁盘文件，通常情况速度应该比内存慢，实际上kafka中关于读取数据有关键技术：<strong>Zero Copy</strong><br>首先可用看下传统的数据拷贝(读取)过程：<br><img src="/2018/11/25/kafka为什么这么快/四次拷贝.png" alt="四次拷贝"><br>一共产生了四次数据拷贝，即使使用DMA来处理硬件之间的通信，也有两次CPU的数据拷贝过程，同时还有用户态和内核态之间的上下文切换。<br>DMA是一种无序CPU参与就可让外设和系统内存之间进行双向数据传输的硬件机制。<br>实际的数据读取过程，根本没修改文件的任何内容，发生的上下文切换和copy过程都是不必要的，那么最主要的就是不要进入用户态。<br>这里可以讨论下linux的零拷贝的几种做法</p>
-<h3><span id="321-mmap减少拷贝次数">3.2.1 mmap减少拷贝次数</span></h3><p>我们减少拷贝次数的一种方法是调用mmap()来代替read调用：<br>应用程序调用mmap()，磁盘上的数据会通过DMA被拷贝的内核缓冲区，接着操作系统会把这段内核缓冲区与应用程序共享，这样就不需要把内核缓冲区的内容往用户空间拷贝。应用程序再调用write(),操作系统直接将内核缓冲区的内容拷贝到socket缓冲区中，这一切都发生在内核态，最后，socket缓冲区再把数据发到网卡去。<br><img src="/2018/11/25/kafka为什么这么快/mmap.png" alt="mmap"><br>mmap替代read很明显减少了一次拷贝，当拷贝数据量很大时，无疑提升了效率。但是使用mmap是有代价的。<br>当你使用mmap时，你可能会遇到一些隐藏的陷阱。例如，当你的程序map了一个文件，但是当这个文件被另一个进程截断(truncate)时, write系统调用会因为访问非法地址而被SIGBUS信号终止。SIGBUS信号默认会杀死你的进程并产生一个coredump,如果你的服务器这样被中止了，产生不可预期的损失。<br>解决办法：为SIGBUS信号增加信号处理程序<br>         使用文件租借锁</p>
-<h3><span id="322-使用sendfilekafka使用方式">3.2.2 使用sendfile(kafka使用方式)</span></h3><p>内核2.1版本开始，linux支持使用sendfile来简化操作步骤，kafka也是利用该技术实现零拷贝<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/sendfile.h&gt;</span></span></span><br><span class="line"><span class="keyword">ssize_t</span> sendfile(<span class="keyword">int</span> out_fd, <span class="keyword">int</span> in_fd, <span class="keyword">off_t</span> *offset, <span class="keyword">size_t</span> count);</span><br></pre></td></tr></table></figure></p>
-<p>参数解释：<br>    out_fd：输出文件描述符<br>    in_fd：输入文件描述符<br>    offset：in_fd的偏移值，表示从何处开始读取<br>    count：代表读取的内容大小<br>这里也有一些限制：in_fd指向的文件必须是可以mmap的<br>                out_map必须指向一个套接字<br>这也说明了sendfile的方向是<strong>单向</strong>的，只能从mmap的文件传输数据到套接字上。<br>所以用户态和内核的数据拷贝传输过程如下：<br><img src="/2018/11/25/kafka为什么这么快/sendfile.png" alt="sendfile系统调用过程"><br>上面过程仍然存在一次拷贝，就是页缓存到socket缓存的拷贝。实际上，我们仅仅需要把缓冲区描述符传到socket缓冲区，再把数据长度传过去，这样DMA控制器直接将页缓存中的数据打包发送到网络中就可以了。<br>所以sendfile系统调用利用DMA引擎将文件内容拷贝到内核缓冲区去，然后将带有文件位置和长度信息的缓冲区描述符添加socket缓冲区去，这一步不会将内核中的数据拷贝到socket缓冲区中，<br>DMA引擎会将内核缓冲区的数据拷贝到协议引擎中去，避免了最后一次拷贝。<br><img src="/2018/11/25/kafka为什么这么快/sendfile_1.png" alt="sendfile系统调用过程1"><br>当然kafka针对数据的读取有两种方式：pull和push。<br>目前实现零拷贝的技术还有很多，比如linux 2.6.17开始支持使用splice系统调用，有兴趣的可以看参考链接。</p>
-<h1><span id="4-kafka总结">4 kafka总结</span></h1><p>总的来说kafka快的原因：mmap技术提高操作磁盘IO速度，写文件是末尾顺序写入，速度快；<br>                     读文件sendfile实现零拷贝。</p>
-<p>参考链接：<a href="https://www.infoq.cn/article/kafka-analysis-part-1" target="_blank" rel="noopener">https://www.infoq.cn/article/kafka-analysis-part-1</a><br>         <a href="https://toutiao.io/posts/508935/app_preview" target="_blank" rel="noopener">https://toutiao.io/posts/508935/app_preview</a><br>         <a href="https://www.jianshu.com/p/fad3339e3448" target="_blank" rel="noopener">https://www.jianshu.com/p/fad3339e3448</a></p>
-
+<p>static的作用总的来说有两种：</p>
+<blockquote>
+<p>限定作用域<br>保持变量内容持久化</p>
+</blockquote>
+<p>对于c下面的static用法与cpp下面的基本差不多</p>
+<h1><span id="cpp中static用法">cpp中static用法</span></h1><h2><span id="1-类的静态成员变量">1 类的静态成员变量</span></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getdata</span><span class="params">()</span> <span class="comment">//非静态成员函数可以调用静态成员变量，反之则不行</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">(<span class="keyword">int</span> av)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    val = av;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> val; <span class="comment">//类的静态成员变量</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x)</span> <span class="comment">//类的静态成员函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"==%d==\n"</span>,x);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>一般声明都是在.h文件中，实现在cpp文件。<br>对于静态成员变量在cpp中文件必须对其初始化，初始化时候使用类名加作用域运算符。<br>如果不初始化就使用的话，会报错。例如上面的非静态成员方法getdata()，如果静态成员变量val没有初始化，会报错<strong>A::val是未定义的引用</strong>。<br>正确的初始化如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getdata</span><span class="params">()</span> <span class="comment">//非静态成员函数可以调用静态成员变量，反之则不行</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">(<span class="keyword">int</span> av)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    val = av;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> val; <span class="comment">//类的静态成员变量</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x)</span> <span class="comment">//类的静态成员函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"==%d==\n"</span>,x);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> A::val =<span class="number">2</span>; <span class="comment">//cpp文件中对其进行初始化，别人才可使用它</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">A a,b;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;a.getdata()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">a.setData(<span class="number">174</span>);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;b.getdata()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>像上面这样使用类的静态成员变量是没有问题的，该成员变量属于类的所有成员实例共有，只有一个拷贝</p>
+<h2><span id="2-类的静态成员函数">2 类的静态成员函数</span></h2><p>如上面的func函数，单独在cpp中实现的时候，前面是不需要带static关键字的。<br>类的静态成员函数是类全局的，静态的成员只能访问静态的成员，这里static关键字并没有改变private的访问作用域<br>将上面的代码规范化写下，分为h文件和cpp文件<br><figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getdata</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">(<span class="keyword">int</span> av)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> val;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到其实现<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"StaticTest.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> A::getdata() <span class="comment">//非静态成员函数可以调用静态成员变量，反之则不行</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> A::setData(<span class="keyword">int</span> av)</span><br><span class="line">&#123;</span><br><span class="line">    val = av;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> A::val =<span class="number">2</span>; <span class="comment">//cpp文件中对其进行初始化，别人才可使用它</span></span><br><span class="line"><span class="keyword">int</span> A::func(<span class="keyword">int</span> x) <span class="comment">//类的静态成员函数,不需要前面的static关键字</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"==%d==\n"</span>,x);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">A a,b;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;a.getdata()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">a.setData(<span class="number">174</span>);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;b.getdata()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//尝试直接只用private的静态成员函数</span></span><br><span class="line"><span class="comment">//A::func(20); 报错, error: static int func(int x) is private</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么这里就疑问，private的static成员函数到底有啥用，外面也不能调用private的方法<br>那么只能在h头文件里面加上public的函数来回调这个private的static方法</p>
+<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">callPrivateFunc</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> A::callPrivateFunc(<span class="keyword">int</span> value)</span><br><span class="line">&#123;</span><br><span class="line">    func(value);<span class="comment">//public的普通方法调用private的static方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">A a,b;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;a.getdata()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">a.setData(<span class="number">174</span>);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;b.getdata()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//A::func(147);</span></span><br><span class="line">a.callPrivateFunc(<span class="number">147</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样是可正常调用的。总结了下private的静态成员变量或者方法的话，目前只用私有静态成员变量貌似可以用来实现一个单例模式。这个后面小节补充一下网上看到的例子。<br>注意：静态成员可以被继承或覆盖，但不能是虚函数，</p>
+<blockquote>
+<p>因为static是与类相关的,而不是运行时候绑定<br>静态成员函数没有this指针，this指针是指向对象的，而静态函数是属于类的<br>静态成员函数不能是const类型的，首先一般函数中this指针是一个指向对象的常量指针，普通的const函数限定了常量指针this所指向的对象也是<br>一 个常量，即通过this指针无法修改对象的。也就是const函数是必须要this指针 ，而static函数是没有this指针的。</p>
+</blockquote>
+<h2><span id="3-只在cpp文件内有效的static变量">3 只在cpp文件内有效的static变量</span></h2><p>在cpp文件的全局范围内声明<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> a =<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>与声明普通的全局变量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b =<span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<p>是不同的。<br>static关键字限定了这个全局的作用范围是本cpp文件，其他的cpp文件是不能访问这个变量的；<br>若两个cpp文件中都有这样的全局变量，则他们是两个不同的变量。<br>这里关于cpp文件内的访问代码解释下：<br>我们在StaticVar1.cpp文件中定义静态的全局变量globalv1<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> globalv1 = <span class="number">12345</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在StaticVar2.cpp定义普通的全局变量globalv2<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> gloablv2 =<span class="number">54321</span>;</span><br></pre></td></tr></table></figure></p>
+<p>然后一个测试文件<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这里对于全局变量的访问，我们是用的extern</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> globalv1;  <span class="comment">//声明的时候不需要static，不然编译器会认为是命名冲突</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> gloablv2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">/* code */</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;globalv1&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>; <span class="comment">//error : globalv1 was not declared in this scope</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;globalv2&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>会发现static的全局变量范围不能在其他cpp文件中使用。</p>
+<h3><span id="31-static的多层含义">3.1 static的多层含义</span></h3><p>   static的第一种含义：修饰全局变量时，表明一个全局变量只对定义在同一文件中的函数可见。<br>   static的第二种含义：修饰局部变量时，表明该变量的值不会因为函数终止而丢失。<br>   static的第三种含义：修饰函数时，表明该函数只在同一文件中调用。<br>   static的第四种含义：修饰类的数据成员，表明对该类所有对象这个数据成员都只有一个实例。即该实例归 所有对象共有。<br>  static在c++中的第五种含义：用static修饰不访问非静态数据成员的类成员函数。这意味着一个静态成员函数只能访问它的参数、类的静态数据成员和全局变  量</p>
+<h2><span id="4-只在cpp文件内有效的static函数">4 只在cpp文件内有效的static函数</span></h2><p>static全局函数的情况与static全局变量的情况一样的，这里不赘述。</p>
+<h2><span id="5-利用静态变量-静态成员函数私有静态变量实现一个单例">5 利用静态变量、静态成员函数，私有静态变量实现一个单例</span></h2><p>一个Singleton类，然后实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">struct Singleton</span><br><span class="line">&#123;</span><br><span class="line">static Singleton* getInstance();//静态函数</span><br><span class="line">protected:</span><br><span class="line">Singleton();</span><br><span class="line">private:</span><br><span class="line">static Singleton* instance;//私有静态变量</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;Singleton.h&quot;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">Singleton* Singleton::instance = NULL;//私有静态成员变量的初始化,不需要再写static</span><br><span class="line">Singleton::Singleton()</span><br><span class="line">&#123;</span><br><span class="line">cout&lt;&lt;&quot;Singleton...构造函数&quot;&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Singleton* Singleton::getInstance()//实现的时候不需要static</span><br><span class="line">&#123;</span><br><span class="line">if(instance == NULL)</span><br><span class="line">&#123;</span><br><span class="line">instance = new Singleton();</span><br><span class="line">&#125;</span><br><span class="line">return instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;Singleton.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main(int argc, char const *argv[])</span><br><span class="line">&#123;</span><br><span class="line">Singleton* sgn = Singleton::getInstance();</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -482,8 +483,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/25/百度开源rpc框架sofa-pbrpc与b-rpc/" rel="next" title="百度开源rpc框架sofa-pbrpc与b-rpc">
-                <i class="fa fa-chevron-left"></i> 百度开源rpc框架sofa-pbrpc与b-rpc
+              <a href="/2018/12/02/c-中内存泄露和内存溢出/" rel="next" title="c++中内存泄露和内存溢出">
+                <i class="fa fa-chevron-left"></i> c++中内存泄露和内存溢出
               </a>
             
           </div>
@@ -491,10 +492,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/02/c-合成默认构造函数与new关键字带不带括号的分析/" rel="prev" title="c++合成默认构造函数与new关键字带不带括号的分析">
-                c++合成默认构造函数与new关键字带不带括号的分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -647,7 +644,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">1 kafka的架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">2 拓扑结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">3 kafka为什么快</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">3.1 kafka的生产者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">3.1.1 顺序写入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">3.1.2 Memory Mapped Files</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">3.2 kafka消费者的零拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">3.2.1 mmap减少拷贝次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">3.2.2 使用sendfile(kafka使用方式)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">4 kafka总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">cpp中static用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">1 类的静态成员变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">2 类的静态成员函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">3 只在cpp文件内有效的static变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">3.1 static的多层含义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">4 只在cpp文件内有效的static函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">5 利用静态变量、静态成员函数，私有静态变量实现一个单例</span></a></li></ol></li></ol></div>
             
 
           </div>
