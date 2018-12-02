@@ -79,17 +79,21 @@
 
 
 
-<meta name="description" content="技术小白，博客不断完善中">
+<meta name="description" content="c++中的内存泄漏与内存溢出是比较常见的bug">
 <meta name="keywords" content="C++ Java  Linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hl174">
-<meta property="og:url" content="http://yoursite.com/tags/网络编程之IO多路复用/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++中内存泄露和内存溢出">
+<meta property="og:url" content="http://yoursite.com/2018/12/02/c-中内存泄露和内存溢出/index.html">
 <meta property="og:site_name" content="hl174">
-<meta property="og:description" content="技术小白，博客不断完善中">
+<meta property="og:description" content="c++中的内存泄漏与内存溢出是比较常见的bug">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/12/02/c-中内存泄露和内存溢出/内存泄漏.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/02/c-中内存泄露和内存溢出/结果.png">
+<meta property="og:updated_time" content="2018-12-02T13:23:03.132Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hl174">
-<meta name="twitter:description" content="技术小白，博客不断完善中">
+<meta name="twitter:title" content="c++中内存泄露和内存溢出">
+<meta name="twitter:description" content="c++中的内存泄漏与内存溢出是比较常见的bug">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/02/c-中内存泄露和内存溢出/内存泄漏.png">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/网络编程之IO多路复用/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/02/c-中内存泄露和内存溢出/"/>
 
 
 
 
 
-  <title>标签: 网络编程之IO多路复用 | hl174</title>
+  <title>c++中内存泄露和内存溢出 | hl174</title>
   
 
 
@@ -144,7 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,54 +276,240 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>网络编程之IO多路复用<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/c-中内存泄露和内存溢出/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl174">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl174">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/25/IO多路复用之select、poll、epoll详解/" itemprop="url">
-              
-                <span itemprop="name">IO多路复用之select、poll、epoll详解</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">c++中内存泄露和内存溢出</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-25T17:52:26+08:00"
-              content="2018-11-25" >
-          11-25
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T21:13:12+08:00">
+                2018-12-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c-基础/" itemprop="url" rel="index">
+                    <span itemprop="name">c++基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/02/c-中内存泄露和内存溢出/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/02/c-中内存泄露和内存溢出/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/02/c-中内存泄露和内存溢出/" class="leancloud_visitors" data-flag-title="c++中内存泄露和内存溢出">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,722 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>c++中的内存泄漏与内存溢出是比较常见的bug<br><a id="more"></a></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-内存溢出与内存泄露">1 内存溢出与内存泄露</a><ul>
+<li><a href="#11-内存泄漏">1.1 内存泄漏</a><ul>
+<li><a href="#111-内存泄露的分类">1.1.1 内存泄露的分类</a></li>
+<li><a href="#112-内存泄露的几种情况">1.1.2 内存泄露的几种情况</a></li>
+<li><a href="#113-内存泄露怎么检测与预防">1.1.3 内存泄露怎么检测与预防</a></li>
+</ul>
+</li>
+<li><a href="#12-内存溢出">1.2 内存溢出</a></li>
+</ul>
+</li>
+<li><a href="#2-野指针">2. 野指针</a><ul>
+<li><a href="#21-野指针的原因">2.1 野指针的原因</a></li>
+</ul>
+</li>
+<li><a href="#3内存越界">3.内存越界</a></li>
+<li><a href="#4缓冲区溢出">4.缓冲区溢出</a></li>
+</ul>
+<!-- tocstop -->
+<h1><span id="1-内存溢出与内存泄露">1 内存溢出与内存泄露</span></h1><p>你真的明白内存溢出与内存泄露的区别么？</p>
+<h2><span id="11-内存泄漏">1.1 内存泄漏</span></h2><p>内存泄露是指程序在申请内存后，无法释放已申请的内存空间，这块空间一直被占着。<br>当然一次泄露可能不会出现问题，但程序多次累积泄露后的后果就是内存耗尽。<br><strong>内存泄露累积的后果是内存溢出</strong>，但是内存溢出不一定是内存泄露造成的，还可能是堆栈达到最大值造成的溢出等。</p>
+<h3><span id="111-内存泄露的分类">1.1.1 内存泄露的分类</span></h3><p>内存泄露的问题重启计算机可以解决，但也可能再次发生泄露。内存泄露与硬件无关，是软件设计上的bug<br>1.常发性内存泄露<br>    发生内存泄露的代码会被多次执行，每次执行都会导致一块内存泄露<br>2.偶发性泄露<br>     发生泄露的代码只在某些特定环境或操作下才发生泄露<br>3.一次性泄露<br>    发生泄露的代码只会被执行一次，或总会有一块仅且一块内存发生泄露。<br>    例如构造函数中分配的内存，析构函数没有释放<br>4.隐式内存泄露<br>    程序运行不停的分配内存，但是直到结束的时候才释放所有的内存。<br>    虽然程序最终会释放所有的内存，但是由于运行时间周期太长，不及时释放内存也会导致内存最终耗尽，所以这种也算隐式的内存泄露</p>
+<h3><span id="112-内存泄露的几种情况">1.1.2 内存泄露的几种情况</span></h3><p>1.在类的构造函数和析构函数中没有匹配的调用new和delete函数<br>2.没有正确地清楚嵌套的对象指针<br>3.在释放对象数组的时候delete没有使用方括号<br>4.指向对象的指针数组不等同于对象数组<br>    对象数组：数组中存放的是对象，释放的时候delete[]<br>    指向对象的指针数组：数组中存放的是指向对象的指针，不仅要释放每个对象的空间，还要释放每个指针的空间，delete只是释放了每个指针，没有释放对象的空间；<br>    正确的做法是通过一个循环，先将对象释放了，再将指向对象的指针释放<br>5.类中有指针变量，缺少拷贝构造函数<br>    没有自定义拷贝构造函数的时候，针对指针变量的拷贝，是值拷贝，会使得两个指针指向同一块地址。<br>    那么析构的时候可能会析构两次同一块地址。<br>    所以类里面有指针变量的话，必须显示的写拷贝构造函数和重载赋值运算符；要么禁用拷贝构造函数与赋值运算符<br>6.缺少重载赋值运算符<br>    与5类似，针对指针变量的拷贝问题，值拷贝带来的内存泄露<br><img src="/2018/12/02/c-中内存泄露和内存溢出/内存泄漏.png" alt="内存泄漏"><br>7.没有将基类的析构函数定义为虚函数<br>    当基类指针指向子类对象时，如果基类的析构函数不是virtual，那么<strong>子类的析构函数将不会被调用，子类的资源没有正确是释放</strong>，因此造成内存泄露</p>
+<h3><span id="113-内存泄露怎么检测与预防">1.1.3 内存泄露怎么检测与预防</span></h3><p>关于内存泄露的原因已经知道，针对性的修改和预防就可以了。这里主要看看怎么检测程序是否发生了内存泄露</p>
+<ol>
+<li>首先利用ps命令<br>根据ps命令 ps -aux 观测指定进程的vsz值是否增长<br>或者命令 ps vx|grep 进程号  —–看size和rss段是否在增加</li>
+<li>利用检测工具，推荐valgrind<br>如果代码review能看出具体的内存泄露的地方话更好，不行的话我们可以依赖相应的检测工具。这里valgrind使用的较多就主要看这个<br>关于valgrind的安装不介绍了，这里直接来个例子<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">getMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *p = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">30</span>); </span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *p = getMemory();</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>首先在编译的时候加上-g调试参数，然后调用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">valgrind --tool=memcheck --leak-check=yes --show-reachable=yes ./a.out</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/12/02/c-中内存泄露和内存溢出/结果.png" alt="结果"><br>可以看到具体的内存泄露的某行代码，关于valgrind的用法以及其包含的一些工具命令后面详细介绍</p>
+<h2><span id="12-内存溢出">1.2 内存溢出</span></h2><p>程序申请内存时，没有足够的内存供申请者使用，造成内存不够用，此时一般会报错OOM，即所谓的内存溢出。</p>
+<h1><span id="2-野指针">2. 野指针</span></h1><p>指向已经被释放或访问受限内存的指针</p>
+<h2><span id="21-野指针的原因">2.1 野指针的原因</span></h2><p>1.指针变量没有被初始化<br>2.指针被free或delete后，没有置为NULL<br>    free和delete只是把指针所指向的内存给释放掉，并没有把指针本身干掉，此时指针指向的是“垃圾”内存。释放后的指针应该被置为NULL<br>3.指针操作超越了变量的作用范围<br>    比如返回指向栈内存的指针就是野指针。</p>
+<h1><span id="3内存越界">3.内存越界</span></h1><p>是指向系统申请一块内存后，使用时却超出申请范围。内存溢出是申请内存的时候就不够<br>比如一些操作内存的函数：sprintf、strcpy、strcat、vsprintf、memcpy、memset、memmove。当造成内存泄漏的代码运行时，所带来的错误是无法避免的，通常会造成<br>1.破坏了堆中内存内存分配信息数据<br>2.破坏了程序其他对象的内存空间<br>3.破坏了空闲内存块</p>
+<h1><span id="4缓冲区溢出">4.缓冲区溢出</span></h1><p>程序为了临时存取数据的需要，一般会分配一些内存空间称为缓冲区。如果向缓冲区中写入缓冲区无法容纳的数据，机会造成缓冲区以外的存储单元被改写，称为缓冲区溢出。<br>而栈溢出是缓冲区溢出的一种，原理也是相同的。<br>分为上溢出和下溢出。其中，上溢出是指栈满而又向其增加新的数据，导致数据溢出；下溢出是指空栈而又进行删除操作等，导致空间溢出</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/02/TCP与UDP报文头格式/" rel="next" title="TCP与UDP报文头格式">
+                <i class="fa fa-chevron-left"></i> TCP与UDP报文头格式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -327,6 +517,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -347,8 +544,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -426,6 +632,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">1 内存溢出与内存泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">1.1 内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">1.1.1 内存泄露的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">1.1.2 内存泄露的几种情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">1.1.3 内存泄露怎么检测与预防</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">1.2 内存溢出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">2. 野指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">2.1 野指针的原因</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">3.内存越界</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">4.缓冲区溢出</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -568,6 +790,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
